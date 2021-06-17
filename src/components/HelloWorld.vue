@@ -9,6 +9,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { api as axios} from '../service/axios';
+import { mapActions, mapGetters } from 'vuex';
 
 export default Vue.extend({
   name: 'HelloWorld',
@@ -37,9 +38,14 @@ export default Vue.extend({
       },
     ],
   }),
+
+  methods: {
+    ...mapActions(['getUser']),
+    
+  },
+
   async mounted() {
-    const response = await axios.get("users/AndersonFSP");
-    console.log(response);
+    this.getUser("AndersonFSP");
   }
 })
 </script>
