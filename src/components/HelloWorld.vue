@@ -19,9 +19,5 @@ export default Vue.extend({
   methods: {
     ...mapActions(['getUser']),
   },
-
-  async mounted() {
-    // this.getUser("AndersonFSP");
-  }
 })
 </script>

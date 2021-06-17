@@ -1,6 +1,6 @@
 import { api as axios } from '@/service/axios';
 import { AxiosResponse } from 'axios';
-import { ActionContext, Commit } from 'vuex';
+import { Commit } from 'vuex';
 
 
 interface IState{
@@ -13,7 +13,7 @@ const state = {
 }
 
 const getters = {
-  users: (state: IState) => state.user
+  user: (state: IState) => state.user
 }
 
 const actions = {
