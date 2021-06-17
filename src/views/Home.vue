@@ -1,15 +1,30 @@
 <template>
-  <hello-world />
+  <section>
+    <hello-world />
+    <Search @search="onSearch"/>
+  </section>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import HelloWorld from '../components/HelloWorld.vue'
+import Vue from 'vue';
+import HelloWorld from '../components/HelloWorld.vue';
+import Search from '@/components/Search.vue';
+import { mapActions, mapGetters } from 'vuex';
 
-  export default Vue.extend({
-    name: 'Home',
-    components: {
-      HelloWorld,
-    },
-  })
+export default Vue.extend({
+  name: 'Home',
+  components: {
+    HelloWorld,
+    Search
+  },
+
+  methods: {
+     ...mapActions(['getUser']),
+
+    onSearch(value: string): void {
+      const name: string = value;
+      this.getUser(name);
+    }
+  },
+})
 </script>
