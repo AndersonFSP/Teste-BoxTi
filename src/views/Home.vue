@@ -3,6 +3,14 @@
     <hello-world />
     <Search @search="onSearch"/>
     <UserCard/>
+    <v-snackbar
+      v-model="snackbar"
+      color="error"
+      right
+      :timeout="3000"
+    >
+    Usuário não encontrado
+  </v-snackbar>
   </section>
 </template>
 
@@ -21,15 +29,21 @@ export default Vue.extend({
     Search,
     UserCard
   },
-
   
+   data: () => ({
+    snackbar: false,
+  }),
 
   methods: {
      ...mapActions(['getUser', 'getRepositories']),
 
-    onSearch(value: string): void {
+     async onSearch(value: string): Promise<void> {
       const name: string = value;
-      this.getUser(name);
+      try {
+        await this.getUser(name);
+      }catch(err) {
+        this.snackbar = true;
+      }
       this.getRepositories(name);
     }
   },
