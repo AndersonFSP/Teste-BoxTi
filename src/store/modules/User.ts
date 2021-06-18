@@ -19,6 +19,7 @@ const getters = {
 const actions = {
   async getUser({ commit }: { commit: Commit }, name: string): Promise<void> {
       const response: AxiosResponse =  await axios.get(`/users/${name}`);
+      console.log(response);
       const user = response.data;
       commit('setUser', user);
   }

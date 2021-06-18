@@ -1,8 +1,15 @@
 <template>
-  <section>
-    <hello-world />
+  <v-container>
     <Search @search="onSearch"/>
-    <UserCard/>
+    <v-row>
+      <v-col md="4" xs="12">
+        <UserCard/>
+      </v-col>
+       <v-col md="8" xs="12">
+         <RepositoriesTable/>
+      </v-col>
+    </v-row>
+
     <v-snackbar
       v-model="snackbar"
       color="error"
@@ -10,24 +17,24 @@
       :timeout="3000"
     >
     Usuário não encontrado
-  </v-snackbar>
-  </section>
+    </v-snackbar>
+  </v-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue';
 import Search from '@/components/Search.vue';
-import UserCard from '@/components/UserCard.vue'
+import UserCard from '@/components/UserCard.vue';
+import RepositoriesTable from '@/components/RepositoriesTable.vue';
 import { mapActions } from 'vuex';
 
 export default Vue.extend({
   name: 'Home',
   
   components: {
-    HelloWorld,
     Search,
-    UserCard
+    UserCard,
+    RepositoriesTable
   },
   
    data: () => ({
@@ -41,10 +48,10 @@ export default Vue.extend({
       const name: string = value;
       try {
         await this.getUser(name);
+        await this.getRepositories(name);
       }catch(err) {
         this.snackbar = true;
       }
-      this.getRepositories(name);
     }
   },
 })

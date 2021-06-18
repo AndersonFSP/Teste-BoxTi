@@ -5,7 +5,7 @@
     dark
   >
     <div class="d-flex align-center ml-6">
-      <h2>Github Search</h2>
+      <h2>Github Api</h2>
     </div>
   </v-app-bar>
 </template>

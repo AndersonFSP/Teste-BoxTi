@@ -9,7 +9,7 @@ interface IState{
 
 
 const state = {
-  repositories: {}
+  repositories: []
 }
 
 const getters = {
@@ -19,7 +19,7 @@ const getters = {
 const actions = {
   async getRepositories({ commit }: { commit: Commit }, name: string): Promise<void> {
     try {
-      const response: AxiosResponse =  await axios.get(`/users/${name}/repos?per_page=5`);
+      const response: AxiosResponse =  await axios.get(`/users/${name}/repos`);
       console.log(response);
       const repositories = response.data;
       commit('setRepositories', repositories);

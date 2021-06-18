@@ -1,9 +1,9 @@
 <template>
-   <v-card
+  <v-card
       class="mx-auto"
       max-width="344"
       v-if="!userObjectEmpty"
-    >
+  >
     <v-img
       :src="user.avatar_url"
       height="250px"
@@ -47,7 +47,7 @@
           </v-list-item>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-subtitle>Total de repositórios públicos: {{ user.followers }}</v-list-item-subtitle>
+              <v-list-item-subtitle>Seguidores: {{ user.followers }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-list-item>
@@ -83,7 +83,6 @@ export default Vue.extend({
     ...mapGetters(['user']),
 
     userObjectEmpty(): boolean {
-      console.log(this.user)
       return Object.keys(this.user).length === 0;
     },
 
