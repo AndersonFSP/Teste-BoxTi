@@ -5,14 +5,22 @@
     class="elevation-1"
     v-if="repositories.length"
   >
-    <template v-slot:item.language="{ item }">
-      <v-chip
-        color="secondary"
-        dark
+   <template v-slot:item.action="{ item }">
+    <v-btn
+      fab
+      small
+      outlined
+      target="_blank"
+      color="teal"
+      :href="item.html_url"
+    >
+      <v-icon
+        small
       >
-        {{ item.language }}
-      </v-chip>
-    </template>
+        mdi-pencil
+      </v-icon>
+    </v-btn>
+  </template>
   </v-data-table>
 </template>
 
@@ -28,13 +36,13 @@ export default Vue.extend({
           {
             text: 'Nome',
             align: 'start',
-            sortable: false,
             value: 'name',
           },
           { text: 'Linguagem', value: 'language' },
           { text: 'Forks', value: 'forks' },
           { text: 'Watchers', value: 'watchers' },
           { text: 'Issues abertas', value: 'open_issues' },
+          { text: 'Visualizar', value: 'action' },
         ],
       }
     },
