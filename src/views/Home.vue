@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <Search @search="onSearch"/>
+    <InfoJumbotron>
+      <Search @search="onSearch" :loading="load"/>
+    </InfoJumbotron>
     <v-row>
       <v-col md="4" xs="12">
         <UserCard/>
@@ -26,19 +28,21 @@ import Vue from 'vue';
 import Search from '@/components/Search.vue';
 import UserCard from '@/components/UserCard.vue';
 import RepositoriesTable from '@/components/RepositoriesTable.vue';
+import InfoJumbotron from '@/components/Jumbotron.vue';
 import { mapActions } from 'vuex';
 
 export default Vue.extend({
   name: 'Home',
-  
   components: {
     Search,
     UserCard,
-    RepositoriesTable
+    RepositoriesTable,
+    InfoJumbotron
   },
   
    data: () => ({
     snackbar: false,
+    load: false
   }),
 
   methods: {
@@ -46,11 +50,14 @@ export default Vue.extend({
 
      async onSearch(value: string): Promise<void> {
       const name: string = value;
+      this.load = true;
       try {
         await this.getUser(name);
         await this.getRepositories(name);
       }catch(err) {
         this.snackbar = true;
+      } finally {
+        this.load = false;
       }
     }
   },

@@ -19,3 +19,6 @@ export default Vue.extend({
   data: () => ({}),
 });
 </script>
+<style>
+  
+</style>

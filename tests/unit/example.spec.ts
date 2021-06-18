@@ -1,12 +1,22 @@
-import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import { createLocalVue, mount } from '@vue/test-utils';
+import Search from '@/components/Search.vue';
+import Vuetify from 'vuetify';
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
-  })
-})
+const localVue = createLocalVue();
+
+describe('Search.vue', () => {
+  let vuetify: any;
+  
+  beforeEach(() => {
+    vuetify = new Vuetify()
+  });
+  it('Emite um valor válido', () => {
+
+    const wrapper = mount(Search, {
+      localVue,
+      vuetify
+    });
+    const input = wrapper.find('.v-text-field');
+    input.setValue("zdfsdfdsf");
+  });
+});

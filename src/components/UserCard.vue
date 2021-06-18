@@ -6,7 +6,7 @@
   >
     <v-img
       :src="user.avatar_url"
-      height="250px"
+      height="300px"
     />
 
     <v-card-title>

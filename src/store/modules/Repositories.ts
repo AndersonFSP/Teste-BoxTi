@@ -18,15 +18,9 @@ const getters = {
 
 const actions = {
   async getRepositories({ commit }: { commit: Commit }, name: string): Promise<void> {
-    try {
       const response: AxiosResponse =  await axios.get(`/users/${name}/repos`);
-      console.log(response);
       const repositories = response.data;
       commit('setRepositories', repositories);
-    }
-    catch(err) {
-      console.log(err)
-    }
   }
 }
 
