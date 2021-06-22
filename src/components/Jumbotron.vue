@@ -2,7 +2,7 @@
   <v-container fill-height>
     <v-layout align-center>
       <v-flex>
-        <h3 class="display-3">Visualizar usuários do GitHub</h3>
+        <h3 class="display-2">Visualizar usuários do GitHub</h3>
         <span class="subheading">Projeto teste para BoxTI utilizando api do git hub</span>
 
         <v-divider class="my-3"></v-divider>

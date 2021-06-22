@@ -1,22 +1,25 @@
 import { createLocalVue, mount } from '@vue/test-utils';
-import Search from '@/components/Search.vue';
 import Vuetify from 'vuetify';
+import Search from '@/components/Search.vue';
 
-const localVue = createLocalVue();
 
 describe('Search.vue', () => {
+  let localVue: any;
   let vuetify: any;
   
   beforeEach(() => {
+    localVue = createLocalVue();
     vuetify = new Vuetify()
+  });
+  const wrapper = mount(Search, {
+    localVue,
+    vuetify
   });
   it('Emite um valor válido', () => {
 
-    const wrapper = mount(Search, {
-      localVue,
-      vuetify
-    });
-    const input = wrapper.find('.v-text-field');
-    input.setValue("zdfsdfdsf");
+    const input = wrapper.find('#input-12');
+    // input.setValue("zdfsdfdsf");
+
+    console.log(input)
   });
 });

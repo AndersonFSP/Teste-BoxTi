@@ -86,7 +86,7 @@ export default Vue.extend({
       return Object.keys(this.user).length === 0;
     },
 
-    title() {
+    title(): string {
       return this.user.name ? this.user.name : this.user.login; 
     }
   },
