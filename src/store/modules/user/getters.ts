@@ -1,7 +1,7 @@
-import { IUserState } from './types';
+import { IUserState, IUser } from './types';
 
 export default {
-  user(state: IUserState ): Object {
+  user(state: IUserState ): IUser {
     return state.user;
   }
 }

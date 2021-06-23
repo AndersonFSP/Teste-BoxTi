@@ -14,9 +14,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Vue, Component } from 'vue-property-decorator';
 
-export default Vue.extend({
-  name: "InfoJumbotron"
-})
+@Component
+export default class InfoJumbotron extends Vue {}
 </script>

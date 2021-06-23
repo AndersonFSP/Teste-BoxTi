@@ -25,35 +25,21 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 
-export default Vue.extend({
-  name: 'Search',
-  props: {
-    loading: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data: () => ({
-    search: "" as string,   
-  }),
-
-  computed: {
-    btnDisable(): boolean {
-      return !Boolean(this.search);
-    }
-  },
-
-  methods: {
-    searchContent(): void {
-      this.$emit("search", this.search)
-    }
+@Component
+export default class Search extends Vue {
+  @Prop() loading: boolean = false;
+ 
+  search: string = "";  
+  
+  get btnDisable(): boolean {
+    return !Boolean(this.search);
   }
  
-})
+  @Emit('search')
+  searchContent(): string {
+    return this.search;
+  }
+}
 </script>
-
-<style>
-
-</style>

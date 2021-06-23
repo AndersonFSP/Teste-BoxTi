@@ -24,42 +24,40 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue } from 'vue-property-decorator';
 import Search from '@/components/Search.vue';
 import UserCard from '@/components/UserCard.vue';
 import RepositoriesTable from '@/components/RepositoriesTable.vue';
 import InfoJumbotron from '@/components/Jumbotron.vue';
-import { mapActions } from 'vuex';
+import { Action } from 'vuex-class';
 
-export default Vue.extend({
-  name: 'Home',
+@Component({
   components: {
     Search,
     UserCard,
     RepositoriesTable,
     InfoJumbotron
-  },
-  
-   data: () => ({
-    snackbar: false,
-    load: false
-  }),
-
-  methods: {
-     ...mapActions(['getUser', 'getRepositories']),
-
-     async onSearch(value: string): Promise<void> {
-      const name: string = value;
-      this.load = true;
-      try {
-        await this.getUser(name);
-        await this.getRepositories(name);
-      }catch(err) {
-        this.snackbar = true;
-      } finally {
-        this.load = false;
-      }
-    }
-  },
+  }
 })
+export default class Home extends Vue {
+  snackbar: boolean = false;
+  load: boolean = false;
+
+  @Action('getUser') getUser: any;
+  @Action('getRepositories') getRepositories: any;
+  
+  async onSearch(name: string): Promise<void> {
+    this.load = true;
+
+    try {
+      await this.getUser(name);
+      await this.getRepositories(name);
+    }catch {
+      this.snackbar = true;
+    } finally {
+      this.load = false;
+    }
+  }
+  
+}
 </script>

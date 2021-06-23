@@ -70,25 +70,23 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { mapGetters } from 'vuex';
+import { IUser } from '@/store/modules/user/types';
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
 
-export default Vue.extend({
-  name: "UserCard",
-  data: () => ({
-    show: false,
-  }),
+@Component
+export default class  UserCard extends Vue {
+  show: boolean = false;
+ 
+  @Getter('user') user!: IUser; 
+  
+  get userObjectEmpty(): boolean {
+    return Object.keys(this.user).length === 0;
+  }
 
-  computed: {
-    ...mapGetters(['user']),
-
-    userObjectEmpty(): boolean {
-      return Object.keys(this.user).length === 0;
-    },
-
-    title(): string {
-      return this.user.name ? this.user.name : this.user.login; 
-    }
-  },
-})
+  get title(): string {
+    return this.user.name ? this.user.name : this.user.login; 
+  }
+ 
+}
 </script>

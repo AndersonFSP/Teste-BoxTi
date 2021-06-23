@@ -26,26 +26,21 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { mapGetters, mapActions } from 'vuex';
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from 'vuex-class';
 
-export default Vue.extend({
-    data: () => ({
-        options: {},
-        headers: [
-          { text: 'Nome', align: 'start', value: 'name' },
-          { text: 'Linguagem', value: 'language' },
-          { text: 'Forks', value: 'forks' },
-          { text: 'Watchers', value: 'watchers' },
-          { text: 'Issues abertas', value: 'open_issues' },
-          { text: 'Visualizar', value: 'action' },
-        ],
-    }),
-    computed: {
-     ...mapGetters(['repositories', 'user']),
-    },
-    methods: {
-      ...mapActions(['getRepositories']),
-    },
-  })
+@Component
+export default class RepositoriesTable extends Vue {
+  options = {}
+  headers = [
+    { text: 'Nome', align: 'start', value: 'name' },
+    { text: 'Linguagem', value: 'language' },
+    { text: 'Forks', value: 'forks' },
+    { text: 'Watchers', value: 'watchers' },
+    { text: 'Issues abertas', value: 'open_issues' },
+    { text: 'Visualizar', value: 'action' },
+  ]
+    
+  @Getter('repositories') repositories!: Object
+}
 </script>
