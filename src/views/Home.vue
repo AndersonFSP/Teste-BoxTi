@@ -25,18 +25,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Search from '@/components/Search.vue';
-import UserCard from '@/components/UserCard.vue';
-import RepositoriesTable from '@/components/RepositoriesTable.vue';
-import InfoJumbotron from '@/components/Jumbotron.vue';
 import { Action } from 'vuex-class';
 
 @Component({
   components: {
-    Search,
-    UserCard,
-    RepositoriesTable,
-    InfoJumbotron
+    Search: () => import('@/components/Search.vue'),
+    UserCard: () => import('@/components/UserCard.vue') ,
+    RepositoriesTable: () => import('@/components/RepositoriesTable.vue'),
+    InfoJumbotron: () => import('@/components/Jumbotron.vue')
   }
 })
 export default class Home extends Vue {
@@ -54,7 +50,7 @@ export default class Home extends Vue {
       await this.getRepositories(name);
     }catch {
       this.snackbar = true;
-    } finally {
+    }finally {
       this.load = false;
     }
   }

@@ -1,4 +1,8 @@
-# teste-boxti
+# teste-boxti 
+
+## App construído com vue.js consumindo github api
+
+## Conferir [app](https://vue-git-hub-search.web.app/)
 
 ## Project setup
 ```

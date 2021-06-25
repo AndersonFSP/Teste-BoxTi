@@ -3,7 +3,7 @@
     <v-layout align-center>
       <v-flex>
         <h3 class="display-2">Visualizar usuários do GitHub</h3>
-        <span class="subheading">Projeto teste para BoxTI utilizando api do git hub</span>
+        <span class="subheading">Projeto teste para BoxTI utilizando github api</span>
 
         <v-divider class="my-3"></v-divider>
 
